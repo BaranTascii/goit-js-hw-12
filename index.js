@@ -2,14 +2,14 @@
                   <a href="${o.largeImageURL}">
                     <img src="${o.webformatURL}" width='360' height='200' alt="${o.tags}">
                   </a>
-                  
+
                   <ul>
                       <li><b>Likes</b> ${o.likes}</li>
                       <li><b>Views</b> ${o.views}</li>
                       <li><b>Comments</b> ${o.comments}</li>
                       <li><b>Downloads</b> ${o.downloads}</li>
                   </ul>
-                  
-                  
+
+
               </li>`).join("");h.insertAdjacentHTML("beforeend",e),v.refresh()},$=()=>{h.innerHTML=""},f=()=>{m.style.display="block"},b=()=>{m.style.display="none"},w=()=>{y.style.display="block"},a=()=>{y.style.display="none"},E="51088577-7b521529318281431558696f8",L=async(r,e,o)=>{try{return(await R.get("https://pixabay.com/api/",{params:{key:E,q:r,image_type:"photo",orientation:"horizontal",safesearch:!0,per_page:o,page:e}})).data}catch(n){i.error({title:"Error",message:n.message,position:"topRight"})}},g=document.querySelector(".form"),P=document.querySelector(".load-more");document.querySelector(".loader");document.querySelector(".gallery");let u=1,l="";const S=40;let c=0;g.addEventListener("submit",async r=>{if(r.preventDefault(),u=1,$(),l=r.target.elements.search.value.trim(),l===""){i.error({title:"Error",message:"Please enter a search term",position:"topRight"}),a();return}a(),f();try{const e=await L(l,u,S);if(c=e.totalHits,e.hits.length===0){i.warning({title:"Warning",message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight"}),a();return}p(e.hits),c>e.hits.length&&w(),c<=e.hits.length&&(a(),i.info({message:"We're sorry, but you've reached the end of search results.",position:"topRight"}))}catch(e){i.error({title:"Error",message:e.message,position:"topRight"})}finally{b(),g.reset()}});P.addEventListener("click",async()=>{u+=1,a(),f();try{const r=await L(l,u,S);if(r.hits.length===0){i.warning({title:"Warning",message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight"}),a();return}p(r.hits);const e=document.querySelector(".gallery-item").getBoundingClientRect();window.scrollBy({top:e.height*2,behavior:"smooth"}),document.querySelectorAll(".gallery-item").length>=c?(a(),i.info({message:"We're sorry, but you've reached the end of search results.",position:"topRight"})):w()}catch(r){i.error({title:"Error",message:r.message,position:"topRight"})}finally{b()}});
 //# sourceMappingURL=index.js.map
