@@ -17,15 +17,15 @@ export const renderImages = images => {
                   <a href="${image.largeImageURL}">
                     <img src="${image.webformatURL}" width='360' height='200' alt="${image.tags}">
                   </a>
-                  
+
                   <ul>
                       <li><b>Likes</b> ${image.likes}</li>
                       <li><b>Views</b> ${image.views}</li>
                       <li><b>Comments</b> ${image.comments}</li>
                       <li><b>Downloads</b> ${image.downloads}</li>
                   </ul>
-                  
-                  
+
+
               </li>`
     )
     .join('');
